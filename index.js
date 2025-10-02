@@ -35,3 +35,17 @@ var map = function(arr, fn) {
 };
 console.log(map([2,4,6],function(n,i){return n+ i}))
 console.log(map([2,4,6],function(n,i){return n+ 2}))
+
+// problem 3 ..... filter array
+var filter = function(arr, fn) {
+    let filteredArr = [];
+    arr.forEach((item,i) => {
+       if(fn(item,i)){
+        filteredArr.push(item)
+       }
+    })
+    return filteredArr;
+};
+console.log(filter([1,2,3,4,5,6,7,8],function(n){return n > 5}))
+console.log(filter([1,2,3,4,5,6,7,8],function(n){return n %2 === 0}))
+console.log(filter([-2,-1,0,1,2],function(n){return n + 1}),"////////")
