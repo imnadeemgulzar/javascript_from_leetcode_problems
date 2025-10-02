@@ -49,3 +49,14 @@ var filter = function(arr, fn) {
 console.log(filter([1,2,3,4,5,6,7,8],function(n){return n > 5}))
 console.log(filter([1,2,3,4,5,6,7,8],function(n){return n %2 === 0}))
 console.log(filter([-2,-1,0,1,2],function(n){return n + 1}),"////////")
+
+
+// problem 4 ..........Reduce Array
+let reduce = function(nums, fn, init) {
+  let result = init;
+  nums.forEach((item) => {
+   result = fn(result,item);
+  })
+  return result;  
+};
+console.log(reduce([1,2,3,4],function(i,a){return i += a},4));
