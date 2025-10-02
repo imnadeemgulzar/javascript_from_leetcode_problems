@@ -1,4 +1,4 @@
-// problem 1 ..... Counter 
+// problem 1 ..... Counter with closure
 let createCounter = function (init) {
     let currentValue = init;
     let increment = function () {
@@ -25,3 +25,13 @@ console.log(counter.increment())
 console.log(counter.increment())
 console.log(counter.reset())
 
+// problem 2 ..... array transformation
+var map = function(arr, fn) {
+    let newArr = [];
+    arr.forEach((e,i) => {
+        newArr.push(fn(e,i));
+    })
+    return newArr;
+};
+console.log(map([2,4,6],function(n,i){return n+ i}))
+console.log(map([2,4,6],function(n,i){return n+ 2}))
