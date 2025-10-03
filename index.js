@@ -81,3 +81,21 @@ let compose = function(functions) {
 const fn = compose([x => x + 1, x => 2 * x])
 // const fn = compose([])
 console.log(fn(10))
+
+// Allow One Function Call Only 
+let once = function(fn) {
+    let fnCalls = 0;
+    return function(...args){
+        if(fnCalls < 1){
+            fnCalls++
+        return fn(...args);
+        }
+    }
+};
+function multAll(a,b,c){
+return a * b * c;
+}
+const callOnce = once(multAll)
+console.log(callOnce(2,3,4));
+console.log(callOnce(6,3,4));
+console.log(callOnce(2,9,4));
