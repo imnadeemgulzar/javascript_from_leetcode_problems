@@ -60,3 +60,24 @@ let reduce = function(nums, fn, init) {
   return result;  
 };
 console.log(reduce([1,2,3,4],function(i,a){return i += a},4));
+
+// problem 5 .......... Function Composition
+let compose = function(functions) {
+    if(functions.length === 0){
+        return function(x){
+            return x;
+        }
+    }
+    return function(x) {
+            let res = x; 
+        for(let i = functions.length-1; i >= 0; i--){
+           res = functions[i](res)
+        }
+        return res;
+    }
+};
+
+
+const fn = compose([x => x + 1, x => 2 * x])
+// const fn = compose([])
+console.log(fn(10))
