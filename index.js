@@ -82,7 +82,7 @@ const fn = compose([x => x + 1, x => 2 * x])
 // const fn = compose([])
 console.log(fn(10))
 
-// Allow One Function Call Only 
+// problem 6 .......... Allow One Function Call Only 
 let once = function(fn) {
     let fnCalls = 0;
     return function(...args){
@@ -99,3 +99,83 @@ const callOnce = once(multAll)
 console.log(callOnce(2,3,4));
 console.log(callOnce(6,3,4));
 console.log(callOnce(2,9,4));
+
+// problem 7 .......... memoization
+const add = (a,b) => {
+    console.log('calculating...');
+    return a+b;
+}
+
+const memoized = function(fn){
+    const cache = {};
+    return function(...args){
+        let key = JSON.stringify(args);
+        if(cache[key]){
+            console.log("coming from cache");
+            return cache[key];
+        }
+            let result = fn(...args);
+            cache[key] = result;
+            return result
+    }
+}
+const memoizedAdd = memoized(add);
+console.log(memoizedAdd(6,7))
+console.log(memoizedAdd(6,7))
+console.log(memoizedAdd(6,7))
+console.log(memoizedAdd(6,2))
+console.log(memoizedAdd(2,6))
+console.log(memoizedAdd(3,4))
+console.log(memoizedAdd(4,3))
+
+//  Example 2nd of memoization 
+const square = (n) => {
+    console.log('calculating...');
+    return n*n;
+}
+console.log(square(17))
+
+    const memoSquare = (fn) => {
+        const cache = {};
+        return function(n){
+        let key = JSON.stringify(n);
+        if(key in cache){
+            console.log('coming from cached memory');
+            return cache[key]
+        }
+        let result = fn(n);
+        cache[key] = result;
+        return result;
+        }
+    };
+const memoizedSquare = memoSquare(square);
+console.log(memoizedSquare(0))
+console.log(memoizedSquare(0))
+console.log(memoizedSquare(4))
+console.log(memoizedSquare(3))
+console.log(memoizedSquare(4))
+console.log(memoizedSquare(3))
+
+// general catched function example 
+function memoize(fn) {
+    let cache = {};
+    return function(...args) {
+        let key = JSON.stringify(args);
+        if(key in cache){
+            console.log('cached')
+            return cache[key]
+        }
+        let result = fn(...args);
+        cache[key] = result;
+        return result;
+    }
+}
+const greeting = (greet) => {
+    console.log('new calculated')
+    return "hello " + greet
+};
+let memoizedGreet = memoize(greeting);
+console.log(memoizedGreet('nadeem'))
+console.log(memoizedGreet('nadeem'))
+console.log(memoizedGreet('nadeem'))
+console.log(memoizedGreet('saqib'))
