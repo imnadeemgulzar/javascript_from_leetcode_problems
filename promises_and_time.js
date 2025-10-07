@@ -279,3 +279,28 @@ return acc + Number(mov.imdbRating) / arr.length;
 }
 
 console.log(getRating(watchList));
+
+console.log("Start..............................................");
+
+setTimeout(() => {
+  console.log("After 1 second");
+}, 3000);
+
+console.log("End");
+
+// sort without mutate
+const globalArray = [5, 6, 3, 2, 9];
+function nonMutatingSort(arr) {
+   return arr.concat().sort(function(a,b){
+    return a - b
+    })
+}
+
+console.log(nonMutatingSort(globalArray));
+
+// split the array with different delimeters 
+function splitify(str) {
+  return str.split(/[\s,-]+/)
+}
+
+ console.log(splitify("Hello World,I-am code"));
